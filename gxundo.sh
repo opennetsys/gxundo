@@ -35,7 +35,7 @@ echo "finding imports..."
 echo "path $dirpath"
 
 # read all Go imports that contain "gx/ipfs/"
-for dir in $(find "$dirpath" -maxdepth 10 -type d)
+for dir in $(find "$dirpath" -maxdepth 100 -type d)
 do
   for line in $(go list -json "./$dir" | jq '.Imports' | grep 'gx/ipfs/' | sed -e 's/gx\///g' | sed -e 's/"//g' | sed -e 's/,//g' | sed -e 's/ //g')
   do
