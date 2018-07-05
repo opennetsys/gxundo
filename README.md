@@ -1,5 +1,7 @@
 # gxundo
 
+> A bash script to convert [gx](https://github.com/whyrusleeping/gx-go) Go imports back to github imports
+
 ## Install
 
 ```bash
@@ -8,10 +10,14 @@ chmod +x gxundo.sh
 sudo mv gxundo.sh /usr/local/bin/gxundo
 ```
 
+## Update
+
+Same as install instructions
+
 ## Usage
 
 ```bash
-gxundo somerepo/somepath/
+$ gxundo {path}
 ```
 
 ## Test
