@@ -37,7 +37,7 @@ echo "path $dirpath"
 # read all Go imports that contain "gx/ipfs/"
 for dir in $(find "$dirpath" -maxdepth 10 -type d)
 do
-  for line in $(go list -json "./$dir/..." | jq '.Imports' | grep 'gx/ipfs/' | sed -e 's/gx\///g' | sed -e 's/"//g' | sed -e 's/,//g' | sed -e 's/ //g')
+  for line in $(go list -json "./$dir" | jq '.Imports' | grep 'gx/ipfs/' | sed -e 's/gx\///g' | sed -e 's/"//g' | sed -e 's/,//g' | sed -e 's/ //g')
   do
     # fetch the gx package.json and read the github url
     new=$(curl -s "https://gateway.ipfs.io/$line/package.json" | jq '.gx.dvcsimport' | sed -e 's/"//g')
