@@ -8,7 +8,7 @@ copy:
 
 .PHONY: test
 test: copy
-	@ . gxundo.sh test/data
+	@ . gxundo.sh test/data/
 
 .PHONY: git/clean
 git/clean:
