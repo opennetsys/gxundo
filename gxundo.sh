@@ -40,8 +40,8 @@ do
   for line in $(go list -json "./$dir" | jq '.Imports' | grep 'gx/ipfs/' | sed -e 's/gx\///g' | sed -e 's/"//g' | sed -e 's/,//g' | sed -e 's/ //g')
   do
     # fetch the gx package.json and read the github url
-    root="$(echo "$line" | tr "/" "\n" | awk 'FNR <= 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
-    pkg="$(echo "$line" | tr "/" "\n" | awk 'FNR > 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
+    root="$(echo "$line" | tr "/" "\\n" | awk 'FNR <= 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
+    pkg="$(echo "$line" | tr "/" "\\n" | awk 'FNR > 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
     jsonurl="https://gateway.ipfs.io/$root/package.json"
     echo fetching "$jsonurl"
     new="$(curl -s "$jsonurl" | jq '.gx.dvcsimport' | sed -e 's/"//g')"
