@@ -1,6 +1,6 @@
 # gxundo
 
-> A bash script to convert Go [gx](https://github.com/whyrusleeping/gx-go) imports back to github imports
+> A bash script to convert Go [gx](https://github.com/whyrusleeping/gx-go) IPFS imports back to github imports
 
 ## Install
 
