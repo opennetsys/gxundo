@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	cid "github.com/ipfs/go-cid"
+	cid "/"
 	"log"
 )
 
