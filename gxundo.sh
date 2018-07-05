@@ -42,7 +42,12 @@ do
     # fetch the gx package.json and read the github url
     root="$(echo "$line" | tr "/" "\n" | awk 'FNR <= 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
     pkg="$(echo "$line" | tr "/" "\n" | awk 'FNR > 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
-    new="$(curl -s "https://gateway.ipfs.io/ipfs/$root/package.json" | jq '.gx.dvcsimport' | sed -e 's/"//g')/$pkg"
+    jsonurl="https://gateway.ipfs.io/$root/package.json"
+    echo fetching "$jsonurl"
+    new="$(curl -s "$jsonurl" | jq '.gx.dvcsimport' | sed -e 's/"//g')"
+    if [ "$pkg" != "" ]; then
+      new="$new/$pkg"
+    fi
     old="gx/$line"
 
     echo "$old => $new"
