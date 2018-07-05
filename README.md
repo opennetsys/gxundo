@@ -18,6 +18,9 @@ Same as install instructions
 
 ```bash
 $ gxundo {path}
+
+# example
+$ gxundo vendor/
 ```
 
 ## Test
