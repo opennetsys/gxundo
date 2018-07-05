@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # function to install `jq`
-function install_jq() {
+function install_jq {
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
       sudo apt-get install jq
   elif [[ "$OSTYPE" == "darwin"* ]]; then
