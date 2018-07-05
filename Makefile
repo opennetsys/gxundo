@@ -10,6 +10,6 @@ copy:
 test: copy
 	@ . gxundo.sh test/data
 
-.PHONY: clean
-clean:
+.PHONY: git/clean
+git/clean:
 	git rm -r --cached .
