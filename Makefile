@@ -9,3 +9,7 @@ copy:
 .PHONY: test
 test: copy
 	@ . gxundo.sh test/data
+
+.PHONY: clean
+clean:
+	git rm -r --cached .
