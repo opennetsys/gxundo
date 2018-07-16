@@ -50,7 +50,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # read all Go imports that contain "gx/ipfs/"
-for dir in $(find "$dirpath" -maxdepth 100 -type f -name '*.go' | eval "$filter" |sort -u | uniq)
+for dir in $(find "$dirpath" -maxdepth 100 -type f -name '*.go' | eval "$filter" | sort -u)
 do
   for line in $(go list -json "./$dir" | jq '.Imports' | grep 'gx/ipfs/' | sed -e 's/gx\///g' | sed -e 's/"//g' | sed -e 's/,//g' | sed -e 's/ //g')
   do
@@ -68,9 +68,10 @@ do
     printf "$cyan%s => %s$normal\n" "$old" "$new"
 
     # replace the imports
-    printf "$white%s$normal\n" "$(gorep -path=\"$dir\" \
-        -from=\"$old\" \
-        -to=\"$new\")"
+    gorep -path="$dir" \
+        -from="$old" \
+        -to="$new"
+
   done
 done
 
