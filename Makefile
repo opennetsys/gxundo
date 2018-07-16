@@ -12,4 +12,14 @@ test: copy
 
 .PHONY: git/clean
 git/clean:
-	git rm -r --cached .
+	@git rm -r --cached .
+
+.PHONY: install/local
+install/local:
+	@cp gxundo.sh /usr/local/bin/gxundo
+
+.PHONY: install
+install:
+	@wget https://raw.githubusercontent.com/c3systems/gxundo/master/gxundo.sh && \
+	mv gxundo.sh /usr/local/bin/gxundo && \
+	chmod aug+rwx /usr/local/bin/gxundo
