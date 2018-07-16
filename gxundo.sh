@@ -42,7 +42,7 @@ if [[ "$dirpath" == "" ]]; then
   exit 1
 fi
 
-printf "$yellow$bold%s$normal\n" "finding imports recursively under $dirpath"
+printf "$yellow%s$normal\n" "finding imports recursively under $dirpath"
 
 filter="sed -r 's|/[^/]+$||'"
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -58,14 +58,14 @@ do
     root="$(echo "$line" | tr "/" "\\n" | awk 'FNR <= 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
     pkg="$(echo "$line" | tr "/" "\\n" | awk 'FNR > 3 {print}' | tr '\n' '/' | sed -e s'/.$//g')"
     jsonurl="https://gateway.ipfs.io/$root/package.json"
-    printf "$white$bold%s$normal\n" "fetching $jsonurl"
+    printf "$white%s$normal\n" "fetching $jsonurl"
     new="$(curl -s "$jsonurl" | jq '.gx.dvcsimport' | sed -e 's/"//g')"
     if [ "$pkg" != "" ]; then
       new="$new/$pkg"
     fi
     old="gx/$line"
 
-    printf "$yellow$bold%s$normal$white$bold => $normal$cyan$bold%s$normal" "$old" "$new"
+    printf "$cyan%s => %s$normal\n" "$old" "$new"
 
     # replace the imports
     printf "$white%s$normal\n" "$(gorep -path=\"$dir\" \
@@ -74,5 +74,5 @@ do
   done
 done
 
-printf "$green$bold%s$normal\n" "complete"
+printf "$green%s$normal\n" "complete"
 
